@@ -19,5 +19,8 @@ if (process.env.PORT==3000){
     process.env.NODEBD= 'mongodb://localhost:27017/cafe';
 }else{
     /// conexion de forma remota al cluster de mo0ngoatlas
-    process.env.NODEBD='mongodb+srv://eric:erick3107282022*@cafe-eqqaq.mongodb.net/test?retryWrites=true&w=majority';
+    // process.env.MONGO_URI ==> VARIBALE DE ENTORNO DE HEROKU LA CUAL 
+    // CREE EN GIT CON 
+    // GIT HEROKU CONFIG:SET (NOMBRE DE LA VARIABLE)="VALOR DE LA VARIBALE N ESTE CASO EL LINK DE NOMGOATLAS"
+    process.env.NODEBD=process.env.MONGO_URI;
 }
