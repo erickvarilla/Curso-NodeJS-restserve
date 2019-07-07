@@ -1,16 +1,30 @@
 {
-    "name": "07-restserve",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "start": "node serve/serve.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "body-parse": "^0.1.0",
-        "express": "^4.17.1"
-    }
+  "name": "07-restserve",
+  "version": "1.0.0",
+  "description": "Para usar ejecutar el comando \r  ```\r  npm install\r  ``",
+  "main": "index.js",
+  "scripts": {
+    "start": "node serve/serve.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "body-parse": "^0.1.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.3",
+    "mongoose-unique-validator": "^2.0.3",
+    "nodemon": "^1.19.1",
+    "underscore": "^1.9.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erickvarilla/Curso-NodeJS-restserve.git"
+  },
+  "bugs": {
+    "url": "https://github.com/erickvarilla/Curso-NodeJS-restserve/issues"
+  },
+  "homepage": "https://github.com/erickvarilla/Curso-NodeJS-restserve#readme"
 }
