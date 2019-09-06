@@ -10,9 +10,19 @@ const _ = require('underscore');
 // llamado del modelo de usuario para guardarlo en la base de datos 
 const Usuario = require('../Modelo/ModeloUsuario');
 
+// llamado el archivo para validar el token
+const { autenticacion , verificar_Rol_Admin }= require('../middelware/autenticacionToken');
 const app = express()
 
-app.get('/usuario', function(req, res) {
+app.get('/usuario',autenticacion, function(req, res) {
+
+    // esto seria una validacion del token donde puedo acceder a la informacion
+    // de una forma efectiva 
+//    return res.json({
+//         usuario: req.usuario,
+//         nombre: req.usuario.nombre,
+//         email: req.usuario.email
+//     });
 
     // exec significa ejecuta 
     // skip significa que comienza desde el registro que digo 
@@ -68,7 +78,7 @@ app.get('/usuario', function(req, res) {
    
 })
 
-app.post('/usuario', function(req, res) {
+app.post('/usuario',[autenticacion,verificar_Rol_Admin], function(req, res) {
     // ese body es el que retorna el body-parse 
     let body = req.body;
 
@@ -105,7 +115,7 @@ app.post('/usuario', function(req, res) {
 
 });
 
-app.put('/usuario/:id', function(req, res) {
+app.put('/usuario/:id',[autenticacion,verificar_Rol_Admin], function(req, res) {
     let id= req.params.id;
     // el objeto underscore en su metodo pick recibe
     //  el objeto que tiene la informacion 
@@ -147,7 +157,7 @@ app.put('/usuario/:id', function(req, res) {
 // Borrar un usuario DB
 // ================================
 
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id',[autenticacion,verificar_Rol_Admin], function(req, res) {
     let id = req.params.id;
     //"============================="
     // COn esta linea 

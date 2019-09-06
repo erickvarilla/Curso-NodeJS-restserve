@@ -19,7 +19,7 @@ app.use(bodyParser.json())
     //=========================
     // LLamado del archivo que contiene las rutas del usuario
     //=========================
-app.use(require('./rutas/usuario'));
+app.use(require('./rutas/index'));
 
 //conexion a la base de datos 
 //==============
