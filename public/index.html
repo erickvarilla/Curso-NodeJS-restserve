@@ -1,0 +1,65 @@
+<!-- PARA PODER HABILITAR LA CARPETA PUBLICA Y ESTE ARCHIVO 
+EN EL ARCHIVO SERVE/SERVE.JS 
+DEBO AGREGAR 
+este libreria path viene por defecto en node.js 
+sirve para completar la ruta publica en el servidor 
+conts path = require('path');  
+app.use(express.static(path.resolve(__dirname,'../public')))-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google Sing - In</title>
+    <!-- Para iniciar session con google se debe agregar las siguientes librerias 
+        Ademas de a ver creado anterior mente las credenciales  -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- Aqui se acrega la credencial creada en google 
+            done dice content se agrega el id que google nos dio  -->
+    <meta name="google-signin-client_id" content="825039903450-42pi2019kcv5g4apue3b10qpktc2ssp5.apps.googleusercontent.com">
+</head>
+<body>
+    <!-- Boton que llama la funcion onSignIn -->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+    <!-- Boton de cierre de Seccion -->
+    <a href="#" onclick="signOut();">Sign out</a>
+
+    <script>
+        // Funcion de Inicio de Seccion
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+        // obtengo el token para la validacion en el lado del 
+        // backend 
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log(id_token);
+
+        // LLamado del servicio en el backend que verifica la informacion
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/google'); // llamado por post del servicio 
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // envia la informacion por el body
+        xhr.onload = function() {
+        console.log('Signed in as: ' + xhr.responseText);
+        };
+        xhr.send('idtoken=' + id_token); // la varible de se envia es id_token la cual para acceder 
+        // a esta varible es por medio de ("idtoken")
+
+    }
+
+    // Funcion de Cierre de Seccion 
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+    </script>
+</body>
+</html>  

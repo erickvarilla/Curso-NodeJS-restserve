@@ -34,3 +34,9 @@ if (process.env.PORT==3000){
     // GIT HEROKU CONFIG:SET (NOMBRE DE LA VARIABLE)="VALOR DE LA VARIBALE N ESTE CASO EL LINK DE NOMGOATLAS"
     process.env.NODEBD=process.env.MONGO_URI;
 }
+
+//======================================
+// Configuracion del client id de google
+//======================================
+
+process.env.CLIENTID =process.env.CLIENTID || '825039903450-42pi2019kcv5g4apue3b10qpktc2ssp5.apps.googleusercontent.com';

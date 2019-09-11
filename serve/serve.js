@@ -3,8 +3,14 @@ require('./configuracion/configuracion');
 //llamado de mongoose para conectar a la BD de mongodb
 const mongoose = require('mongoose');
 
-
+// use de express
 const app = express()
+
+// cargamos el path para poder completar el llamdo de la carpeta publica
+// que es donde esta nuestro html 
+const path = require('path');  
+// para poder habilitar el html en express se usa la siguiente nomenclatura 
+app.use(express.static(path.resolve(__dirname,'../public')));
 
 // body-parse se usa para recoger las peticiones x-www-from-urlencode
 // que son solamente los parametros que se mandan a guardar 
